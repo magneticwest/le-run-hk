@@ -1,0 +1,23 @@
+{
+  "name": "le-run-hk",
+  "version": "1.0.0",
+  "description": "Bilingual web app for checking Hong Kong Sports Grounds jogging availability",
+  "main": "scripts/fetch-data.js",
+  "scripts": {
+    "fetch": "node scripts/fetch-data.js",
+    "build": "npm run fetch",
+    "serve": "npx serve public",
+    "dev": "npm run fetch && npm run serve"
+  },
+  "keywords": [
+    "hong-kong",
+    "sports",
+    "jogging",
+    "lcsd"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

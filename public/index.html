@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Run HK 樂跑 - Check Hong Kong Sports Grounds jogging availability | 查詢香港運動場緩步跑開放時間">
+  <meta name="keywords" content="Hong Kong, sports ground, jogging, running, LCSD, 香港, 運動場, 緩步跑, 康文署, 樂跑">
+  <meta name="author" content="Le Run HK 樂跑">
+  <meta name="theme-color" content="#7cb798">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://lerun.today/">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Le Run HK 樂跑 - HK Sports Ground Jogging Availability">
+  <meta property="og:description" content="Check jogging availability at Hong Kong sports grounds in one place. 一站式查詢香港運動場緩步跑開放時間。">
+  <meta property="og:url" content="https://lerun.today/">
+  <meta property="og:locale" content="en_HK">
+  <meta property="og:locale:alternate" content="zh_HK">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Le Run HK 樂跑 - HK Sports Ground Jogging">
+  <meta name="twitter:description" content="Check jogging availability at Hong Kong sports grounds in one place.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏃</text></svg>">
+
+  <title>Le Run HK 樂跑 | 香港運動場緩步跑開放時間</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Le Run HK 樂跑",
+    "alternateName": "樂跑",
+    "description": "Check jogging availability at Hong Kong sports grounds. 查詢香港運動場緩步跑開放時間。",
+    "url": "https://lerun.today/",
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Le Run HK"
+    },
+    "inLanguage": ["en", "zh-Hant"],
+    "areaServed": {
+      "@type": "Place",
+      "name": "Hong Kong"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Skip link for keyboard accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header" role="banner">
+    <div class="header-content">
+      <h1 class="logo">Le Run <span class="logo-accent">HK</span> <span class="logo-zh">樂跑</span></h1>
+      <button id="lang-toggle" class="lang-btn" aria-label="Switch language">中</button>
+    </div>
+  </header>
+
+  <main id="main-content" class="main" role="main">
+    <section class="intro">
+      <p id="intro-text" class="intro-text">
+        Check jogging availability at Hong Kong sports grounds
+      </p>
+    </section>
+
+    <section class="filters">
+      <div class="filter-group">
+        <label id="area-label" for="area-select">Area</label>
+        <select id="area-select" class="select">
+          <option value="">-- Select Area --</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label id="district-label" for="district-select">District</label>
+        <select id="district-select" class="select" disabled>
+          <option value="">-- Select District --</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label id="venue-label" for="venue-select">Sports Ground</label>
+        <select id="venue-select" class="select" disabled>
+          <option value="">-- Select Sports Ground --</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label id="month-label" for="month-select">Month</label>
+        <select id="month-select" class="select" disabled>
+          <option value="">-- Select Month --</option>
+        </select>
+      </div>
+
+      <div class="filter-group filter-group-button">
+        <button id="search-btn" class="btn btn-search" disabled>
+          <span id="search-btn-text">Search</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="quick-actions">
+      <h3 id="available-today-title" class="quick-actions-title">Available Today</h3>
+      <div class="quick-actions-buttons">
+        <button id="available-today-hk" class="btn btn-region" data-area="HK_ISLAND">
+          <span id="btn-hk-text">Hong Kong Island</span>
+        </button>
+        <button id="available-today-kln" class="btn btn-region" data-area="KOWLOON">
+          <span id="btn-kln-text">Kowloon</span>
+        </button>
+        <button id="available-today-nt" class="btn btn-region" data-area="NT">
+          <span id="btn-nt-text">New Territories</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="today-section" class="today-section hidden" aria-live="polite">
+      <h2 id="today-title" class="section-title">Available Today</h2>
+      <p id="today-date" class="today-date"></p>
+      <div class="legend today-legend">
+        <div id="today-legend-items" class="legend-items">
+          <div class="legend-item">
+            <span class="legend-color status-A"></span>
+            <span id="today-legend-A">Open for jogging</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color status-L"></span>
+            <span id="today-legend-L">Outer lanes only</span>
+          </div>
+        </div>
+      </div>
+      <div id="today-special-notes" class="today-special-notes hidden"></div>
+      <div id="today-venues" class="today-venues"></div>
+    </section>
+
+    <section id="timetable-section" class="timetable-section hidden" aria-live="polite">
+      <div class="timetable-header">
+        <p id="table-last-updated" class="table-last-updated"></p>
+        <div class="venue-title-row">
+          <h2 id="venue-title" class="venue-title"></h2>
+          <button id="go-to-today-btn" class="btn btn-go-today hidden">
+            <span id="go-to-today-text">Go to Today</span>
+          </button>
+        </div>
+        <p id="venue-address" class="venue-address"></p>
+      </div>
+
+      <div class="legend">
+        <h3 id="legend-title">Legend</h3>
+        <div class="legend-items">
+          <div class="legend-item">
+            <span class="legend-color status-A"></span>
+            <span id="legend-A">Open for jogging</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color status-L"></span>
+            <span id="legend-L">Outer lanes only (6-8)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color status-B"></span>
+            <span id="legend-B">Block booking</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color status-M"></span>
+            <span id="legend-M">Venue closed</span>
+          </div>
+        </div>
+      </div>
+
+      <section id="special-notes-section" class="special-notes-section hidden">
+        <div id="special-notes-content" class="special-notes-content"></div>
+      </section>
+
+      <div class="timetable-container">
+        <table id="timetable" class="timetable">
+          <thead id="timetable-head"></thead>
+          <tbody id="timetable-body"></tbody>
+        </table>
+      </div>
+
+      <section id="notices-section" class="notices-section hidden">
+        <h3 id="notices-title">Notices</h3>
+        <div id="notices-content" class="notices-content"></div>
+      </section>
+    </section>
+
+    <section id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p id="loading-text">Loading data...</p>
+    </section>
+
+    <section id="error" class="error hidden" role="alert" aria-live="assertive">
+      <p id="error-text"></p>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <p id="footer-source" class="footer-source">
+        <span id="footer-source-text">Data sourced from:</span> <a id="lcsd-link" href="https://www.lcsd.gov.hk/en/index.html" target="_blank" rel="noopener">Leisure and Cultural Services Department</a>
+      </p>
+      <p id="last-updated" class="last-updated"></p>
+      <p id="footer-feedback" class="footer-feedback">
+        <span id="feedback-text">Found a bug or have feedback?</span> <a id="feedback-link" href="https://forms.gle/PF9aRDjhdQmSwor49" target="_blank" rel="noopener">Let us know</a>
+      </p>
+      <p id="footer-disclaimer" class="footer-disclaimer">
+        Information accuracy is not guaranteed. Please verify with official LCSD sources if needed.
+      </p>
+      <p id="footer-copyright" class="footer-copyright">
+        © 2026 Le Run HK 樂跑. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
